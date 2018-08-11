@@ -21,6 +21,9 @@ class Rename:
     def delete_whitespace(self, name):
         return self.search_and_replace(name, "\s{2,}", ' ')
 
+    def replace_underscore(self, name, replacement=' '):
+        return self.search_and_replace(name, '_', replace=replacement)
+
     def rename_rom(self, file_name):
         # Get the base directory of the ROM file.
         abspath   = os.path.abspath(file_name)
@@ -30,7 +33,7 @@ class Rename:
         name = self.delete_parentheses(file_name)
         name = self.search_and_replace(name, '-', replace='：')
         name = self.search_and_replace(name, '\s+：', replace='：')
-        name = self.search_and_replace(name, '_', replace=' ')
+        name = self.replace_underscore(name)
         name = self.delete_whitespace(name)
 
         # Rename the ROM file.
