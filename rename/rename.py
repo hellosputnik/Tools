@@ -29,6 +29,7 @@ class Rename:
         # Delete all unnecessary characters from the name.
         name = self.delete_parentheses(file_name)
         name = self.search_and_replace(name, '-', replace='：')
+        name = self.search_and_replace(name, '_', replace=' ')
         name = self.delete_whitespace(name)
 
         # Rename the ROM file.
